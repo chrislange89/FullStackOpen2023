@@ -33,7 +33,13 @@ const App = () => {
 
   return (
     <div>
-      <Votes anecdotes={anecdotes} votes={votes} selected={selected} handleVote={handleVote} handleClick={handleClick} />
+      <Votes 
+        anecdotes={anecdotes} 
+        votes={votes} 
+        selected={selected} 
+        handleVote={handleVote} 
+        handleClick={handleClick} 
+      />
       <MostVotes anecdotes={anecdotes} votes={votes} />
     </div>
   )

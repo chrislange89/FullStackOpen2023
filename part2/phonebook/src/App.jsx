@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
-import Axios from 'axios';
 
 import Numbers from './components/numbers.component'
 import Search from './components/search.component'
 import Entry from './components/entry.component'
 
+import personsService from './services/persons.service'
+
 const App = () => {
   const getInitialPersons = () => {
-    const personsUri = 'http://localhost:3001/persons';
-    Axios.get(personsUri)
+    personsService.getAll()
     .then((res) => {
       setPersons(res.data);
     }).catch((err) => {
@@ -19,7 +19,6 @@ const App = () => {
   useEffect(getInitialPersons, []);
 
   const [persons, setPersons] = useState([]); 
-
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -51,7 +50,6 @@ const App = () => {
   const addNewPerson = (event) => {
     event.preventDefault();
     const newPerson = {
-      id: crypto.randomUUID(),
       name: newName,
       number: newNumber,
     }
@@ -71,7 +69,15 @@ const App = () => {
       return;
     }
 
-    setPersons(persons.concat(newPerson));
+    personsService.create(newPerson)
+    .then((res) => {
+      console.log(res);
+      setPersons(persons.concat(newPerson));
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
     clearForm();
   }
 

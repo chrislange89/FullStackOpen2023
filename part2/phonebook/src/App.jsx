@@ -1,23 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Axios from 'axios';
+
 import Numbers from './components/numbers.component'
 import Search from './components/search.component'
 import Entry from './components/entry.component'
 
 const App = () => {
-  const defaultPersons = [
-    { 
-      id: 1,
-      name: 'Arto Hellas', 
-      number: '040-1234567' 
-    },
-    {
-      id: 2,
-      name: 'Ada Lovelace',
-      number: '39-44-5323523'
-    }
-  ]
+  const getInitialPersons = () => {
+    const personsUri = 'http://localhost:3001/persons';
+    Axios.get(personsUri)
+    .then((res) => {
+      setPersons(res.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  } 
 
-  const [persons, setPersons] = useState(defaultPersons); 
+  useEffect(() => {
+    getInitialPersons();
+  }, [])
+
+  const [persons, setPersons] = useState([]); 
 
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');

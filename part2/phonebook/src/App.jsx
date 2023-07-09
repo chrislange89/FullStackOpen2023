@@ -16,9 +16,7 @@ const App = () => {
     })
   } 
 
-  useEffect(() => {
-    getInitialPersons();
-  }, [])
+  useEffect(getInitialPersons, []);
 
   const [persons, setPersons] = useState([]); 
 

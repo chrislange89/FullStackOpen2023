@@ -1,12 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
-import Numbers from './components/numbers.component'
-import Search from './components/search.component'
-import Entry from './components/entry.component'
+import Numbers from './components/numbers.component';
+import Search from './components/search.component';
+import Entry from './components/entry.component';
+import Notification from './components/notification.component';
 
-import personsService from './services/persons.service'
+import personsService from './services/persons.service';
 
-import './App.styles.css'
+import './App.styles.css';
+
+const NotificationTypes = {
+  ERROR: 'error',
+  NOTIFICATION: 'notification',
+}
 
 const App = () => {
   const getInitialPersons = () => {
@@ -24,6 +30,8 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [notificationMessage, setNotificationMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   let filteredPeople = persons.filter((person) => person.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -118,6 +126,7 @@ const App = () => {
     .then((res) => {
       console.log(res);
       setPersons(persons.concat(newPerson));
+      displayNotification(`${newPerson.name} was added to the phonebook`, NotificationTypes.NOTIFICATION)
     })
     .catch((err) => {
       console.log(err);
@@ -130,9 +139,37 @@ const App = () => {
     addNewPerson(event);
   }
 
+  const displayNotification = (message, type) => {
+    switch (type) {
+      case NotificationTypes.ERROR:
+        setErrorMessage(message);
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 5000);
+        break;
+      case NotificationTypes.NOTIFICATION:
+        setNotificationMessage(message);
+        setTimeout(() => {
+          setNotificationMessage(null);
+        }, 5000);
+        break;
+      default:
+        break;
+    }
+
+  }
+
   return (
     <div>
       <h1>Phonebook</h1>
+      <Notification 
+        message={notificationMessage}
+        notificationType={NotificationTypes.NOTIFICATION}
+      />
+      <Notification 
+        message={errorMessage}
+        notificationType={NotificationTypes.ERROR}
+      />
       <Search 
         searchTerm={searchTerm} 
         handleSearchTerm={handleSearchTerm}
@@ -145,7 +182,12 @@ const App = () => {
         handleNewNumber={handleNewNumber} 
         addNewPerson={addNewPerson}
       />
-      <Numbers people={filteredPeople} handleDelete={handleDelete}/>
+      <Numbers 
+        people={filteredPeople}
+        handleDelete={handleDelete}
+      />
+      <button onClick={() => displayNotification('Good Notification', NotificationTypes.NOTIFICATION)}>Good Notification</button>
+      <button onClick={() => displayNotification('Bad Notification', NotificationTypes.ERROR)}>Bad Notification</button>
     </div>
   )
 }

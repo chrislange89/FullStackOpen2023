@@ -23,9 +23,31 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
+  let filteredPeople = persons.filter((person) => person.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
   const handleNewName = (event) => {
     event.preventDefault();
     setNewName(event.target.value);
+  }
+  
+  const handleDelete = (event) => {
+    event.preventDefault();
+    const personId = event.target.id;
+    const foundPerson = persons.find((person) => person.id == personId);
+    const confirmDelete = window.confirm(`Delete ${foundPerson.name}?`);
+    if (confirmDelete) {
+      personsService.deletePerson(personId)
+      .then((res) => {
+        console.log(res.data);
+        const remainingPeople = persons.filter((person) => person.id !== personId);
+        const parent = event.target.parentNode;
+        parent.parentNode.removeChild(parent);
+        setPersons(remainingPeople);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
   }
 
   const handleNewNumber = (event) => {
@@ -85,8 +107,6 @@ const App = () => {
     addNewPerson(event);
   }
 
-  const shownPeople = persons.filter((person) => person.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
   return (
     <div>
       <h1>Phonebook</h1>
@@ -102,7 +122,7 @@ const App = () => {
         handleNewNumber={handleNewNumber} 
         addNewPerson={addNewPerson}
       />
-      <Numbers people={shownPeople} />
+      <Numbers people={filteredPeople} handleDelete={handleDelete}/>
     </div>
   )
 }

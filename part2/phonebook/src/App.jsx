@@ -6,6 +6,8 @@ import Entry from './components/entry.component'
 
 import personsService from './services/persons.service'
 
+import './App.styles.css'
+
 const App = () => {
   const getInitialPersons = () => {
     personsService.getAll()
@@ -69,14 +71,35 @@ const App = () => {
     setNewNumber('');
   }
 
+  const updateExisting = (person) => {
+    const updatedPerson = {
+      ...person,
+      number: newNumber,
+    }
+    personsService.update(person.id, updatedPerson)
+    .then((res) => {
+      console.log(res.data);
+      const updatedPeople = persons.map((person) => person.id !== updatedPerson.id ? person : res.data);
+      setPersons(updatedPeople);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   const addNewPerson = (event) => {
     event.preventDefault();
     const newPerson = {
       name: newName,
       number: newNumber,
     }
+
     if (personExists(newName)) {
-      alert(`${newName} is already added to phonebook`);
+      const foundPerson = persons.find((person) => person.name === newName);
+      const userWantsToUpdate = window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`);
+      if (userWantsToUpdate) {
+        updateExisting(foundPerson);
+      }
       clearForm();
       return;
     }

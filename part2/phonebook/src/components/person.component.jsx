@@ -6,7 +6,7 @@ const Person = ({ id, name, number, handleDelete }) => {
         <td>{name}</td>
         <td>{number}</td>
         <td>
-          <button id={id} type="button" onClick={handleDelete}>Delete</button>
+          <button className='delete' id={id} type="button" onClick={handleDelete}>Delete</button>
         </td>
       </tr>
   )

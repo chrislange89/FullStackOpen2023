@@ -13,7 +13,7 @@ const Entry = ({ handleSubmit, newName, handleNewName, newNumber, handleNewNumbe
           <input name="number" value={newNumber} onChange={handleNewNumber} required />
         </div>
         <div>
-          <button type="button" onClick={addNewPerson}>add</button>
+          <button className="add" type="button" onClick={addNewPerson}>add</button>
         </div>
       </form>
     </>

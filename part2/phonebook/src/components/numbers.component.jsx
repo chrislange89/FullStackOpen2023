@@ -20,6 +20,7 @@ const Numbers = ({ people, handleDelete }) => {
             <tr>
               <th>Name</th>
               <th>Number</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>

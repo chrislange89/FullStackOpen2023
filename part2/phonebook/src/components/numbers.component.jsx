@@ -7,15 +7,21 @@ const Numbers = ({ people, handleDelete }) => {
   if (!havePeople) {
     return (
       <div>
-        <h2>Numbers</h2>
+        <h2>Entries</h2>
         <p>No people to show</p>
       </div>
     )
   } else {
     return (
       <div>
-        <h2>Numbers</h2>
+        <h2>Entries</h2>
         <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Number</th>
+            </tr>
+          </thead>
           <tbody>
             {people.map((person) => 
               <Person 

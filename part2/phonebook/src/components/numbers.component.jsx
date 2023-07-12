@@ -15,15 +15,19 @@ const Numbers = ({ people, handleDelete }) => {
     return (
       <div>
         <h2>Numbers</h2>
-        {people.map((person) => 
-          <Person 
-            key={person.id}
-            id={person.id}
-            name={person.name} 
-            number={person.number}
-            handleDelete={handleDelete} 
-          /> 
-        )}
+        <table>
+          <tbody>
+            {people.map((person) => 
+              <Person 
+                key={person.id}
+                id={person.id}
+                name={person.name} 
+                number={person.number}
+                handleDelete={handleDelete} 
+              /> 
+            )}
+          </tbody>
+        </table>
       </div>
     )
   }

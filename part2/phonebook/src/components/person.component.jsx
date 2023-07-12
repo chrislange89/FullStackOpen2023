@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 
 const Person = ({ id, name, number, handleDelete }) => {
   return (
-      <p>{name} - {number}
+      <tr>
+        <td>{name}</td>
+        <td>{number}</td>
         <button id={id} type="button" onClick={handleDelete}>Delete</button>
-      </p>
-    
+      </tr>
   )
 }
 

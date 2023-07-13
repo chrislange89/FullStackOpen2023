@@ -14,7 +14,7 @@ export default function Countries({ countries }) {
 
   if (countries.length > 10) {
     return (
-      <p>Too many matches, specify another filter</p>
+      <p>Too many matches, please use the search filter</p>
     );
   }
 

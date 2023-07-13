@@ -1,24 +1,27 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const Search = ({ search, handleSearch }) => {
+function Search({ search, handleSearch }) {
   return (
     <div>
-      <label htmlFor="search">
-        Search: 
+      <label htmlFor="search-input">
+        Search:
+        <input
+          name="search"
+          value={search}
+          onChange={handleSearch}
+          type="text"
+          id="search-input"
+          aria-label="Search input"
+        />
       </label>
-      <input 
-        value={search} 
-        onChange={handleSearch} 
-        type="text" 
-        id="search" 
-      />
     </div>
-  )
+  );
 }
 
 Search.propTypes = {
   search: PropTypes.string.isRequired,
-  handleSearch: PropTypes.func.isRequired
-}
+  handleSearch: PropTypes.func.isRequired,
+};
 
 export default Search;

@@ -1,7 +1,11 @@
+import PropTypes from 'prop-types';
+
 const Search = ({ search, handleSearch }) => {
   return (
     <div>
-      <label htmlFor="search">Search: </label>
+      <label htmlFor="search">
+        Search: 
+      </label>
       <input 
         value={search} 
         onChange={handleSearch} 
@@ -10,6 +14,11 @@ const Search = ({ search, handleSearch }) => {
       />
     </div>
   )
+}
+
+Search.propTypes = {
+  search: PropTypes.string.isRequired,
+  handleSearch: PropTypes.func.isRequired
 }
 
 export default Search;

@@ -19,5 +19,6 @@ module.exports = {
   rules: {
     'linebreak-style': 'off',
     'react/forbid-prop-types': 'off',
+    'no-console': 'off',
   },
 };

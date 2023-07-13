@@ -18,22 +18,24 @@ export default function Country({ country }) {
   }
 
   return (
-    <p>
+    <p className="country">
       <h2>{country.name.common}</h2>
       <button onClick={handleClick} type="button">hide</button>
       <div>
         <p>
-          <strong>Flag: </strong>
-          <span>{country.flag}</span>
+          {`Capital: ${country.capital}`}
         </p>
         <p>
-          <strong>Capital City: </strong>
-          {country.capital[0]}
+          {`Area: ${country.area} km^2`}
         </p>
-        <p>
-          population
-          {country.population}
-        </p>
+        <h3>Languages</h3>
+        <ul>
+          {Object.values(country.languages).map((language) => (
+            <li key={language}>{language}</li>
+          ))}
+        </ul>
+        <img src={country.flags.png} alt="flag" width="200" />
+        <h3>Weather</h3>
       </div>
     </p>
   );

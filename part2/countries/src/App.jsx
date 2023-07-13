@@ -41,7 +41,10 @@ function App() {
       return (
         filteredCountries.map((country) => {
           return (
-            <Country key={country.cca3} country={country} />
+            <Country 
+              key={country.cca3} 
+              country={country} 
+            />
           )
         })
       )

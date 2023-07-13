@@ -25,6 +25,8 @@ function App() {
     return countryName.includes(search.toLowerCase());
   });
 
+  const countryCount = filteredCountries.length;
+
   const getCountries = () => {
     countryService
       .getAll()
@@ -40,14 +42,18 @@ function App() {
   useEffect(getCountries, []);
 
   return (
-    <>
+    <div className="container">
       <Search
         value={search}
         handleSearch={handleSearch}
       />
+      <p>
+        {countryCount}
+        Countries
+      </p>
       <h1>Countries</h1>
       <Countries countries={filteredCountries} />
-    </>
+    </div>
   );
 }
 

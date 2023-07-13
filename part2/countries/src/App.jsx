@@ -40,14 +40,14 @@ function App() {
   useEffect(getCountries, []);
 
   return (
-    <div>
+    <>
       <Search
         value={search}
         handleSearch={handleSearch}
       />
       <h1>Countries</h1>
       <Countries countries={filteredCountries} />
-    </div>
+    </>
   );
 }
 

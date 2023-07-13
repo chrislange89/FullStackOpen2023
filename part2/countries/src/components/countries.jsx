@@ -13,14 +13,14 @@ export default function Countries({ countries }) {
   }
 
   return (
-    <div>
+    <>
       {countries.map((country) => (
         <Country
           key={country.cca3}
           country={country}
         />
       ))}
-    </div>
+    </>
   );
 }
 

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import Country from './components/country';
 import Countries from './components/countries';
 import Search from './components/search';
-
 import countryService from './services/countries';
 
 import './App.styles.css';
@@ -12,18 +10,20 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [search, setSearch] = useState('');
 
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
   const sortedCountries = countries.sort((a, b) => {
     if (a.name.common < b.name.common) return -1;
     if (a.name.common > b.name.common) return 1;
     return 0;
   });
 
-  function filteredCountries() {
-    return sortedCountries.filter((country) => {
-      const countryName = country.name.common.toLowerCase();
-      return countryName.includes(search.toLowerCase());
-    });
-  }
+  const filteredCountries = sortedCountries.filter((country) => {
+    const countryName = country.name.common.toLowerCase();
+    return countryName.includes(search.toLowerCase());
+  });
 
   const getCountries = () => {
     countryService
@@ -39,27 +39,6 @@ function App() {
   // get countries on page load
   useEffect(getCountries, []);
 
-  function countriesToDisplay() {
-    if (countries.length > 0) {
-      return (
-        filteredCountries.map((country) => (
-          <Country
-            key={country.cca3}
-            country={country}
-          />
-        ))
-      );
-    }
-
-    return (
-      <p>No countries to display</p>
-    );
-  }
-
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-  };
-
   return (
     <div>
       <Search
@@ -67,15 +46,7 @@ function App() {
         handleSearch={handleSearch}
       />
       <h1>Countries</h1>
-      <Countries countries={countries} />
-
-      <div>
-        {
-          (countries.length > 0)
-            ? countriesToDisplay()
-            : <p>Loading...</p>
-        }
-      </div>
+      <Countries countries={filteredCountries} />
     </div>
   );
 }

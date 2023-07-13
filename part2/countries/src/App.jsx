@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Country from './components/country';
+import Countries from './components/countries';
 import Search from './components/search';
 
 import countryService from './services/countries';
@@ -66,6 +67,8 @@ function App() {
         handleSearch={handleSearch}
       />
       <h1>Countries</h1>
+      <Countries countries={countries} />
+
       <div>
         {
           (countries.length > 0)

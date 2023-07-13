@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Country from './country';
+
 export default function Countries({ countries }) {
   const haveCountries = countries.length > 0;
 
@@ -12,7 +14,12 @@ export default function Countries({ countries }) {
 
   return (
     <div>
-      hello
+      {countries.map((country) => (
+        <Country
+          key={country.cca3}
+          country={country}
+        />
+      ))}
     </div>
   );
 }

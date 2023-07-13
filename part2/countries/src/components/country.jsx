@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function Country({ country }) {
+export default function Country({ country }) {
   const [expanded, setExpanded] = useState(false);
 
   const handleClick = () => {
@@ -42,5 +42,3 @@ function Country({ country }) {
 Country.propTypes = {
   country: PropTypes.object.isRequired,
 };
-
-export default Country;

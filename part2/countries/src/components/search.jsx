@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Search({ search, handleSearch }) {
+export default function Search({ search, handleSearch }) {
   return (
     <div>
       <label htmlFor="search-input">
@@ -23,5 +23,3 @@ Search.propTypes = {
   search: PropTypes.string.isRequired,
   handleSearch: PropTypes.func.isRequired,
 };
-
-export default Search;

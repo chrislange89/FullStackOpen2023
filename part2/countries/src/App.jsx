@@ -32,8 +32,9 @@ function App() {
       setCountries(data);
     })
   }
-  
-  useEffect(getCountries, [])
+
+  // get countries on page load
+  useEffect(getCountries, []);
 
   function countriesToDisplay() {
     if (countries.length > 0) {

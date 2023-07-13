@@ -20,6 +20,10 @@ function App() {
       return 0;
     }
   })
+
+  const filteredCountries = sortedCountries.filter((country) => {
+    return country.name.common.toLowerCase().includes(search.toLowerCase());
+  })
   
   const getCountries = () => {
     countryService
@@ -34,7 +38,7 @@ function App() {
   function countriesToDisplay() {
     if (countries.length > 0) {
       return (
-        sortedCountries.map((country) => {
+        filteredCountries.map((country) => {
           return (
             <Country key={country.cca3} country={country} />
           )
@@ -53,10 +57,17 @@ function App() {
 
   return (
     <div>
-      <Search value={search} handleSearch={handleSearch} />
+      <Search 
+        value={search} 
+        handleSearch={handleSearch} 
+      />
       <h1>Countries</h1>
       <div>
-        {countries.length > 0 ? countriesToDisplay() : 'Loading...'}
+        {
+          countries.length > 0 ? 
+          countriesToDisplay() : 
+          <p>Loading...</p>
+        }
       </div>
     </div>
   )

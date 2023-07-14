@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import getWeather from '../services/weather';
 
 export default function Country({ country }) {
   const [expanded, setExpanded] = useState(false);
+  const [weather, setWeather] = useState(null);
+
+  async function getCityWeather() {
+    const latitude = country.latlng[0];
+    const longitude = country.latlng[1];
+    const weatherData = await getWeather(latitude, longitude);
+    setWeather(weatherData);
+  }
 
   const handleClick = () => {
     setExpanded(!expanded);
   };
+
+  useEffect(getCityWeather, []);
 
   if (!expanded) {
     return (
@@ -16,6 +28,23 @@ export default function Country({ country }) {
       </p>
     );
   }
+
+  const weatherData = () => {
+    if (weather !== null) {
+      return (
+        <p>
+          <b>Temperature:</b>
+          {` ${weather.main.temp} Celcius`}
+        </p>
+      );
+    }
+
+    return (
+      <p>
+        Loading...
+      </p>
+    );
+  };
 
   return (
     <p className="country">
@@ -36,6 +65,7 @@ export default function Country({ country }) {
         </ul>
         <img src={country.flags.png} alt="flag" width="200" />
         <h3>Weather</h3>
+        {weatherData()}
       </div>
     </p>
   );

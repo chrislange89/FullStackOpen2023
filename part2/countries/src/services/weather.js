@@ -1,15 +1,18 @@
 import Axios from 'axios';
 
-const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+const API_KEY = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
-export default async function getWeather(city) {
-  const { data } = await Axios.get(API_URL, {
+async function getWeather(lat, lon) {
+  const weatherData = await Axios.get(API_URL, {
     params: {
-      q: city,
+      lat,
+      lon,
       appid: API_KEY,
       units: 'metric',
     },
   });
-  return data;
+  return weatherData;
 }
+
+export default { getWeather };

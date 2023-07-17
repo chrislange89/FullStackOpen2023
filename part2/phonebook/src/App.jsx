@@ -184,8 +184,6 @@ const App = () => {
         people={filteredPeople}
         handleDelete={handleDelete}
       />
-      <button onClick={() => displayNotification('Good Notification', NotificationTypes.NOTIFICATION)}>Good Notification</button>
-      <button onClick={() => displayNotification('Bad Notification', NotificationTypes.ERROR)}>Bad Notification</button>
     </div>
   )
 }

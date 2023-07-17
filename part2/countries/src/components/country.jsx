@@ -7,18 +7,25 @@ export default function Country({ country }) {
   const [expanded, setExpanded] = useState(false);
   const [weather, setWeather] = useState(null);
 
-  async function getCityWeather() {
-    const latitude = country.latlng[0];
-    const longitude = country.latlng[1];
-    const weatherData = await getWeather(latitude, longitude);
-    setWeather(weatherData);
-  }
-
   const handleClick = () => {
     setExpanded(!expanded);
   };
 
-  useEffect(getCityWeather, []);
+  useEffect(() => {
+    async function getCityWeather() {
+      const latitude = country.latlng[0];
+      const longitude = country.latlng[1];
+      try {
+        const weatherData = await getWeather(latitude, longitude);
+        setWeather(weatherData);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    if (expanded) {
+      getCityWeather();
+    }
+  }, [expanded]);
 
   if (!expanded) {
     return (
@@ -47,7 +54,7 @@ export default function Country({ country }) {
   };
 
   return (
-    <p className="country">
+    <div className="country">
       <h2>{country.name.common}</h2>
       <button onClick={handleClick} type="button">hide</button>
       <div>
@@ -67,7 +74,7 @@ export default function Country({ country }) {
         <h3>Weather</h3>
         {weatherData()}
       </div>
-    </p>
+    </div>
   );
 }
 

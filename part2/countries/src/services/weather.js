@@ -12,7 +12,8 @@ async function getWeather(lat, lon) {
       units: 'metric',
     },
   });
-  return weatherData;
+  console.log(weatherData.data);
+  return weatherData.data;
 }
 
-export default { getWeather };
+export default getWeather;

@@ -11,7 +11,7 @@ function App() {
   const [search, setSearch] = useState('');
 
   const handleSearch = (event) => {
-    setSearch(event.target.value);
+    setSearch(event.target.value === undefined ? '' : event.target.value);
   };
 
   const sortedCountries = countries.sort((a, b) => {

@@ -31,7 +31,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [notificationMessage, setNotificationMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   let filteredPeople = persons.filter((person) => person.name.toLowerCase().includes(searchTerm.toLowerCase()));
 

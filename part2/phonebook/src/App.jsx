@@ -48,10 +48,8 @@ const App = () => {
     if (confirmDelete) {
       personsService.deletePerson(personId)
       .then((res) => {
-        console.log(res.data);
-        const remainingPeople = persons.filter((person) => person.id !== personId);
-        const parent = event.target.parentNode;
-        parent.parentNode.removeChild(parent);
+        console.log(res);
+        const remainingPeople = persons.filter((person) => person.id != personId);
         setPersons(remainingPeople);
       })
       .catch((err) => {

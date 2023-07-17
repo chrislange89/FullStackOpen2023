@@ -7,7 +7,7 @@ export default function Search({ search, handleSearch }) {
       <label htmlFor="search-input">
         Search:
         <input
-          name="search"
+          name="search-input"
           value={search}
           onChange={handleSearch}
           type="text"

@@ -33,7 +33,17 @@ const App = () => {
   const [notificationMessage, setNotificationMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  let filteredPeople = persons.filter((person) => person.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  let filteredPeople = persons.filter((person) => {
+    if (person.name === undefined || person.number === undefined) {
+      const newPerson = {
+        ...person,
+        name: 'BLANK',
+        number: 'BLANK',
+      }
+      return newPerson.name.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+    return person.name.toLowerCase().includes(searchTerm.toLowerCase());
+  })
 
   const handleNewName = (event) => {
     event.preventDefault();

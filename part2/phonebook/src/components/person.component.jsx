@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 const Person = ({ id, name, number, handleDelete }) => {
   return (
       <tr>
-        <td>{name}</td>
-        <td>{number}</td>
+        <td>{(name) ? name : ''}</td>
+        <td>{number ? number : ''}</td>
         <td>
           <button className='delete' id={id} type="button" onClick={handleDelete}>Delete</button>
         </td>

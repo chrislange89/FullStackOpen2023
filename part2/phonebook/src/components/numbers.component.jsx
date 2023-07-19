@@ -26,7 +26,7 @@ const Numbers = ({ people, handleDelete }) => {
           <tbody>
             {people.map((person) => 
               <Person 
-                key={person.id}
+                key={person.id || person._id}
                 id={person.id}
                 name={person.name} 
                 number={person.number}

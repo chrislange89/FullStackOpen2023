@@ -1,8 +1,8 @@
 import axios from 'axios'
 const baseUrl = '/api/persons'
 
-const getAll = () => {
-  return axios.get(baseUrl);
+const getAll = async () => {
+  return await axios.get(baseUrl);
 }
 
 const create = newObject => {

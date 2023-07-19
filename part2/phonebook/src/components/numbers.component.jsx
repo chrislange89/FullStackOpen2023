@@ -18,6 +18,7 @@ const Numbers = ({ people, handleDelete }) => {
         <table>
           <thead>
             <tr>
+              <th>ID</th>
               <th>Name</th>
               <th>Number</th>
               <th>Delete</th>

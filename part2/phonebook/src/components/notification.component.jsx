@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
 const Notification = ({ message, notificationType }) => {
-  if (message === null) {
+  if (message === null || message === '') {
     return null;
   }
   return (
     <div className={notificationType}>
-      {message}
+      {message ? message : ''}
     </div>
   )
 }

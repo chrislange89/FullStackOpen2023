@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 const Person = ({ id, name, number, handleDelete }) => {
   return (
       <tr>
+        <td className="idColor">{id}</td>
         <td>{(name) ? name : ''}</td>
         <td>{number ? number : ''}</td>
         <td>

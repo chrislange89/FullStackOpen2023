@@ -133,13 +133,12 @@ const App = () => {
     personsService.create(newPerson)
     .then((res) => {
       console.log(res);
-      setPersons(persons.concat(newPerson));
+      setPersons(persons.concat(res.data));
       displayNotification(`${newPerson.name} was added to the phonebook`, NotificationTypes.NOTIFICATION)
     })
     .catch((err) => {
       console.log(err);
     })
-
     clearForm();
   }
 
@@ -152,13 +151,13 @@ const App = () => {
       case NotificationTypes.ERROR:
         setErrorMessage(message);
         setTimeout(() => {
-          setErrorMessage(null);
+          setErrorMessage('');
         }, 5000);
         break;
       case NotificationTypes.NOTIFICATION:
         setNotificationMessage(message);
         setTimeout(() => {
-          setNotificationMessage(null);
+          setNotificationMessage('');
         }, 5000);
         break;
       default:

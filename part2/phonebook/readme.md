@@ -18,6 +18,7 @@ Using a ViteJS frontend with an Express server as the backend.
 Start MongoDB server
 
 ```Powershell
+cd <mongo install location>
 mongod --dbpath <path to data directory>
 ```
 

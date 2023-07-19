@@ -12,3 +12,25 @@ Using a ViteJS frontend with an Express server as the backend.
 
 [Backend](https://github.com/chrislange89/FullStackOpen2023_part3/tree/main)
 [Frontend](https://github.com/chrislange89/FullStackOpen2023/tree/main/part2/phonebook)
+
+## How to use
+
+Start MongoDB server
+
+```Powershell
+mongod --dbpath <path to data directory>
+```
+
+Start backend server
+
+```Powershell
+cd ..\fullstackopen_part3\
+yarn dev
+```
+
+Start frontend server
+
+```Powershell
+cd ..\fullstackopen\part2\phonebook\
+yarn dev
+```

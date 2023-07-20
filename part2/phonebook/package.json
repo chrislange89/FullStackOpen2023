@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "builddist": "vite build",
-    "copybuild": "xcopy dist C:\\Personal\\Projects\\fullstackopen_part3\\build\\ /E/H",
+    "copybuild": "xcopy dist C:\\Personal\\Projects\\fullstackopen_part3\\build\\ /E/H/Y",
     "build": "yarn builddist && yarn copybuild",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

@@ -14,9 +14,9 @@ const middleware = require('./utils/middleware');
 // routers
 const blogRouter = require('./controllers/blogs');
 
-const mongooseConnectionString = config.MONGODB_URI.replace('<password>', config.MONGODB_PASSWORD).replace('<user>', config.MONGODB_USER);
+const mongooseConnectionString = config.MONGODB_URI.replace('password', config.MONGODB_PASSWORD).replace('user', config.MONGODB_USER);
 
-logger.info('Connecting to:', config.MONGODB_URI);
+logger.info('Connecting to:', mongooseConnectionString, '\n');
 
 mongoose.connect(mongooseConnectionString)
   .then(() => {

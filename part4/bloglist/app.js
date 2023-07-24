@@ -29,6 +29,7 @@ mongoose.connect(mongooseConnectionString)
 app.use(cors());
 app.use(express.static('build'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(middleware.requestLogger);
 
 app.use('/api/blogs', blogRouter);

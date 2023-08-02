@@ -20,6 +20,10 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "jest --verbose"
+  },
+  "env": {
+    "jest": true
   }
 }

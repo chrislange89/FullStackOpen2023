@@ -6,7 +6,14 @@ Router.get('/', (request, response, next) => {
   Blog
     .find({})
     .then((blogs) => {
-      response.json(blogs);
+      if (blogs.length > 0) {
+        logger.info('blogs:', blogs);
+        response.json(blogs);
+      } else {
+        response.json({
+          message: 'No blogs found',
+        });
+      }
     })
     .catch((error) => {
       next(error);

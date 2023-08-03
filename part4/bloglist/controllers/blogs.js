@@ -2,22 +2,10 @@ const Router = require('express').Router();
 const Blog = require('../models/blog');
 const logger = require('../utils/logger');
 
-Router.get('/', (request, response, next) => {
-  Blog
-    .find({})
-    .then((blogs) => {
-      if (blogs.length > 0) {
-        logger.info('blogs:', blogs);
-        response.json(blogs);
-      } else {
-        response.json({
-          message: 'No blogs found',
-        });
-      }
-    })
-    .catch((error) => {
-      next(error);
-    });
+// eslint-disable-next-line no-unused-vars
+Router.get('/', async (request, response, next) => {
+  const blogs = await Blog.find({});
+  response.json(blogs);
 });
 
 Router.post('/', (request, response, next) => {

@@ -5,6 +5,7 @@ const app = express();
 // node packages
 const cors = require('cors');
 const mongoose = require('mongoose');
+require('express-async-errors');
 
 // config
 const config = require('./utils/config');

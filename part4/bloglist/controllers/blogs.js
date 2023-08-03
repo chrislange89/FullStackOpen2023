@@ -5,7 +5,14 @@ const logger = require('../utils/logger');
 // eslint-disable-next-line no-unused-vars
 Router.get('/', async (request, response, next) => {
   const blogs = await Blog.find({});
-  response.json(blogs);
+  const formattedBlogs = blogs.map((blog) => blog.toJSON());
+  formattedBlogs.map((blog) => {
+    blog.id = blog._id.toString();
+    delete blog._id;
+    delete blog.__v;
+    return blog;
+  });
+  response.json(formattedBlogs);
 });
 
 Router.post('/', (request, response, next) => {

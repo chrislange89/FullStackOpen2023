@@ -14,7 +14,7 @@
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.2",
-    "jest": "^29.6.1",
+    "jest": "^29.6.2",
     "nodemon": "^3.0.1"
   },
   "scripts": {
@@ -23,7 +23,12 @@
     "lint": "eslint .",
     "test": "jest --verbose"
   },
+<<<<<<< HEAD
   "jest": {
     "testEnvironment": "node"
+=======
+  "env": {
+    "jest": true
+>>>>>>> 45cfc503c4fe3430e163bc6654be33e3f0cc5180
   }
 }

@@ -22,13 +22,5 @@
     "dev": "nodemon index.js",
     "lint": "eslint .",
     "test": "jest --verbose"
-  },
-<<<<<<< HEAD
-  "jest": {
-    "testEnvironment": "node"
-=======
-  "env": {
-    "jest": true
->>>>>>> 45cfc503c4fe3430e163bc6654be33e3f0cc5180
   }
 }

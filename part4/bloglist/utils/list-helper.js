@@ -31,24 +31,29 @@ function mostBlogs(blogs) {
 }
 
 function mostLikes(blogs) {
-  return blogs;
-//   // find the author with the most likes
-//   // sum the likes
-//   // return the author and the sum
-//   const authors = blogs.map((blog) => blog.author);
-//   const author = authors.
-//   const max = Math.max(...Object.values(author));
-//   const most = Object.keys(author).find((key) => author[key] === max);
-//   const likes = blogs.reduce((prev, current) => {
-//     if (current.author === most) {
-//       return prev + current.likes;
-//     }
-//     return prev;
-//   }, 0);
-//   return {
-//     author: most,
-//     likes,
-//   };
+  const authors = blogs.map((blog) => {
+    const { author, likes } = blog;
+    return {
+      author,
+      likes,
+    };
+  });
+
+  const authorLikes = {};
+  authors.forEach((author) => {
+    if (authorLikes[author.author]) {
+      authorLikes[author.author] += author.likes;
+    } else {
+      authorLikes[author.author] = author.likes;
+    }
+  });
+
+  const max = Math.max(...Object.values(authorLikes));
+  const most = Object.keys(authorLikes).find((key) => authorLikes[key] === max);
+  return {
+    author: most,
+    likes: max,
+  };
 }
 
 module.exports = {

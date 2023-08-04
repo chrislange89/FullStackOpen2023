@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import * as Styles from './bloglist.module.css';
+import './bloglist.module.css';
+import BlogCard from './blogcard';
 
 const Bloglist = ({ blogs }) => {
   return (
@@ -9,12 +10,10 @@ const Bloglist = ({ blogs }) => {
       </h1>
       <div>
         {blogs.map((blog) => (
-          <div className={Styles.blogCard} key={blog.id}>
-            <h2>{blog.title}</h2>
-            <p>{blog.author}</p>
-            <a href={blog.url}>{blog.url}</a>
-            <p>{blog.likes}</p>
-          </div>
+          <BlogCard
+            blog={blog}
+            key={blog.id}
+          />
         ))}
       </div>
     </>

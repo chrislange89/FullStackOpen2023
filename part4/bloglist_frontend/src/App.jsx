@@ -2,7 +2,8 @@ import Bloglist from "./components/bloglist"
 import NewBlog from "./components/newBlog";
 
 import { useState, useEffect } from 'react';
-import Axios from "axios";
+
+import BlogsService from "./services/blogs.service";
 
 const defaultBlogs = [
   {
@@ -33,12 +34,12 @@ function App() {
   };
 
   const getBlogs = async () => {
-    const response = await Axios.get('/api/blogs');
+    const response = await BlogsService.getAll();
     setBlogs(response.data);
   };
 
   const addBlog = async (blog) => {
-    const response = await Axios.post('/api/blogs', blog);
+    const response = await BlogsService.create(blog);
     return response.data;
   };
 
